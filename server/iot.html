@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello world ********</title>
+   </head>
+   <script src = "/socket.io/socket.io.js"></script>
+   <script>
+        var socket = io();
+        socket.on('broadcast', (data) =>{
+            console.log("Update Data available: ", data);
+            var sensor = data["sensor"];
+            var flag = data["flag"];
+            if (sensor == 'ot1-update'){
+                document.getElementById("overheadsensor1").checked = flag;
+            }else  if (sensor == 'ot2-update'){
+                document.getElementById("overheadsensor2").checked = flag;
+            }else  if (sensor == 'dt1-update'){
+                document.getElementById("undergroundSensor1").checked = flag;
+            }else  if (sensor == 'dt2-update'){
+                document.getElementById("undergroundSensor2").checked = flag;
+            }else  if (sensor == 'manual-update'){
+                document.getElementById("manualOnOff").checked = flag;
+            }else{
+                console.log("case not handled")
+            }
+
+        });
+            
+        function overheadsensor1(){
+            var flag = document.getElementById("overheadsensor1").checked;
+            console.log("Over Head Sensor 1: ", flag);
+            socket.emit('ot1',flag);
+        }
+
+        function overheadsensor2(){
+            var flag = document.getElementById("overheadsensor2").checked;
+            console.log("Over Head Sensor 2: ", flag);
+            socket.emit('ot2',flag);
+        }
+
+        function undergroundSensor1(){
+            var flag = document.getElementById("undergroundSensor1").checked;
+            console.log("Under ground Sensor 1: ", flag);
+            socket.emit('dt1',flag);
+        }
+
+        function undergroundSensor2(){
+            var flag = document.getElementById("undergroundSensor2").checked;
+            console.log("Under Ground Sensor 2: ", flag);
+            socket.emit('dt2',flag);
+        }
+
+        function manualOnOff(){
+            var flag = document.getElementById("manualOnOff").checked;
+            console.log("Manual On Off: ", flag);
+            socket.emit('manual',flag);
+        }
+   </script>
+
+
+   <body>
+       <b> Water level Status and control dashboard </b>
+       <HR></HR>
+
+      <div id="control-status">
+        <b>Over Head sensor 1 :</b>     <input type="checkbox" id="overheadsensor1" onclick="overheadsensor1()"> <br>
+        <b>Over Head Sensor 2</b>       <input type="checkbox" id="overheadsensor2" onclick="overheadsensor2()"> <br>
+        <b>Under Ground sensor 1</b>    <input type="checkbox" id="undergroundSensor1" onclick="undergroundSensor1()"><br>
+        <b>Under Ground sensor 2</b>    <input type="checkbox" id="undergroundSensor2" onclick="undergroundSensor2()"> <br>
+        <b>Manual On Off</b>            <input type="checkbox" id="manualOnOff" onclick="manualOnOff()"><br>
+
+
+   </body>
+   
+</html>
