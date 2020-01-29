@@ -1,8 +1,8 @@
 {
-  "name": "chatclient",
+  "name": "server",
   "version": "1.0.0",
   "description": "Sample Chat application to demonstrate socket programming in node and ios",
-  "main": "index.js",
+  "main": "iot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
