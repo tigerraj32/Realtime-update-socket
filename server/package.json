@@ -9,7 +9,7 @@
   "author": "rajan twanabashu",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-useragent": "^1.0.13",
     "socket.io": "^2.3.0",
     "to-json": "^0.5.0-prerelease"
